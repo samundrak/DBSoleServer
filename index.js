@@ -7,16 +7,16 @@ const db = require('./db');
 io.on('connection', socket => {
     socket.on('query', data => {
 
-        if(data.query === 'end'){
-            socket.emit('query_response',{
-                success : 1,
-                result : 'Server closed.. start again manually..'
+        if (data.query === 'end') {
+            socket.emit('query_response', {
+                success: 1,
+                result: 'Server closed.. start again manually..'
             });
             process.exit(0);
         }
 
 
-        db(data.query || '' , (e, r) => {
+        db(data.query || '', (e, r) => {
             let response;
             if (e) {
                 response = {
