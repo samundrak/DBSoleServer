@@ -5,6 +5,7 @@ module.exports = class Provider extends ExtendImplementor {
 
     constructor() {
         super();
+        this.prepare = this.prepare.concat(['query']);
         this.config = config;
     }
 

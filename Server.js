@@ -24,33 +24,34 @@ module.exports = class Server {
 
         socketService.socket.setServer(server);
         this.socket = socketService.socket.get();
-        this.socket.on('connection', this.socketHandler);
+        this.socket.on('connection', this.socketHandler(this));
         server.listen(process.env.PORT);
         console.log(`Server is running on port ` + process.env.PORT);
         if (cb) cb(server);
         return this;
     }
 
-    socketHandler(socket) {
-        socket.on('query', data => {
+    socketHandler(context) {
+        return socket => {
+            socket.on('query', data => {
+                if (data.query === 'end') {
+                    socket.emit('query_response', {
+                        success: 1,
+                        result: 'Server closed.. start again manually..'
+                    });
+                    process.exit(0);
+                }
 
-            if (data.query === 'end') {
-                socket.emit('query_response', {
-                    success: 1,
-                    result: 'Server closed.. start again manually..'
+
+                context.database.query(data.query || '', (e, r) => {
+                    let response = {
+                        success: 0,
+                        result: e || r
+                    };
+                    socket.emit('query_response', response);
                 });
-                process.exit(0);
-            }
-
-
-            this.database.query(data.query || '', (e, r) => {
-                let response = {
-                    success: 0,
-                    result: e || r
-                };
-                socket.emit('query_response', response);
             });
-        });
+        }
     }
 
 }

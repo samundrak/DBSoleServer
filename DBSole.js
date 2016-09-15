@@ -23,7 +23,7 @@ module.exports = class DBSole {
             case '--no-daemon':
                 console.log(
                     'Server is not running on daemon, ' +
-                    'if you want to be run on daemon ' +
+                    'if you want to run on daemon ' +
                     'start it again'
                 );
 
