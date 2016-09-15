@@ -1,5 +1,10 @@
-const Server = require('./Server');
+const DBSole = require('./DBSole');
 
-new Server()
-    .run()
-    .handleOptions(process.argv.splice(2));
+(function () {
+
+    "use strict";
+    let argv = process.argv.splice(2);
+    new DBSole().start(argv);
+
+}());
+

@@ -18,7 +18,7 @@ databaseProvider.extend({
     get(){
         "use strict";
         return this.database;
-    }
+    },
 
 });
 module.exports = databaseProvider;

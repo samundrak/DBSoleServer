@@ -6,8 +6,8 @@ module.exports = class ExtendImplementor {
 
     extend(options) {
         this.prepare.forEach(props => {
-            if (!options[props]) throw new Error(props + ' is not available');
-            this[props] = options[props];
+            if (!options[props] && !this[props]) throw new Error(props + ' is not available');
+            this[props] = options[props] || this[props];
         });
     }
 }
