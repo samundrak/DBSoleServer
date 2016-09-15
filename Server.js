@@ -6,17 +6,22 @@ const SocketService = require('./src/Core/Socket');
 
 const config = require('./config.json');
 
-const databaseService = new DatabaseService.interface(DatabaseService.provider[config.default.database]);
-const socketService = new SocketService.interface(SocketService.provider.SocketIO);
 
 module.exports = class Server {
 
     constructor() {
+        const databaseService = new DatabaseService.interface(
+            DatabaseService.provider[config.default.database]
+        );
         this.database = databaseService.database;
         process.env.PORT = process.env.PORT || config.server.port;
     }
 
     run(cb) {
+        const socketService = new SocketService.interface(
+            SocketService.provider.SocketIO
+        );
+
         socketService.socket.setServer(server);
         this.socket = socketService.socket.get();
         this.socket.on('connection', this.socketHandler);
@@ -48,20 +53,4 @@ module.exports = class Server {
         });
     }
 
-    handleOptions(argv) {
-        switch (argv[0]) {
-            case '--no-daemon':
-                console.log('Server is not running on daemon, if you want start it again');
-                break;
-            case '--config':
-                console.log('This Option will be available soon');
-                new Server().run();
-                break;
-            default:
-                console.log('Server is running on daemon, to kill it kill from bash or from extension typing command \'end\' ')
-                require('daemon')();
-                break
-        }
-        return this;
-    }
 }
