@@ -1,10 +1,13 @@
 {
-  "name": "dbsoleServer",
+  "name": "dbsole",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./bin/dbsole.js",
+  "bin": {
+    "dbsole": "./bin/dbsole.js"
+  },
   "scripts": {
-    "start": "node index.js --harmony-proxies",
+    "start": "node ./bin/dbsole.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
