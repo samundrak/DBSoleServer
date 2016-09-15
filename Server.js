@@ -4,7 +4,7 @@ const server = require('http').Server(app);
 const DatabaseService = require('./src/Core/Database');
 const SocketService = require('./src/Core/Socket');
 
-const config = require('./config.json');
+const config = require('./config.json.example');
 
 const databaseService = new DatabaseService.interface(DatabaseService.provider[config.default.database]);
 const socketService = new SocketService.interface(SocketService.provider.SocketIO);
