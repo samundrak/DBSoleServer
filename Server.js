@@ -4,7 +4,7 @@ const server = require('http').Server(app);
 const DatabaseService = require('./src/Core/Database');
 const SocketService = require('./src/Core/Socket');
 
-const config = require('./config.json.example');
+const config = require('./config.json');
 
 
 module.exports = class Server {

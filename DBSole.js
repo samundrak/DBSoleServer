@@ -1,5 +1,4 @@
 const ConfigBuilder = require('./src/ConfigBuilder');
-const Server = require('./Server');
 const Schema = require('./Schema');
 
 
@@ -45,17 +44,15 @@ module.exports = class DBSole {
                 //We will wait 5sec before going daemon
                 //to see if any exception occur so that
                 //user will be inform about it
+                this.goDaemon();
 
-                setTimeout(function () {
-                    //noinspection JSUnresolvedFunction
-                    require('daemon')();
-                }, 2000);
                 break;
         }
         return this;
     }
 
     bootServer() {
+        const Server = require('./Server');
         return new Server()
             .run();
     }
@@ -63,6 +60,7 @@ module.exports = class DBSole {
     promptConfigAndBootServer() {
         this.configBuilder.promptForConfig(Schema, () => {
             this.bootServer();
+            this.goDaemon();
         });
     }
 
@@ -77,5 +75,12 @@ module.exports = class DBSole {
             console.error(e)
             process.exit(0);
         });
+    }
+
+    goDaemon() {
+        setTimeout(function () {
+            //noinspection JSUnresolvedFunction
+            require('daemon')();
+        }, 2000);
     }
 }

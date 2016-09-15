@@ -18,13 +18,16 @@ module.exports = {
     database: {
         mysql: {
             hostname: {
-                required: true
+                required: true,
+                default: 'localhost'
             },
             username: {
-                required: true
+                required: true,
+                default: 'root'
             },
             password: {
-                required: true
+                required: true,
+                default: 'root'
             },
             database: {
                 required: true
