@@ -49,7 +49,7 @@ module.exports = class DBSole {
                 setTimeout(function () {
                     //noinspection JSUnresolvedFunction
                     require('daemon')();
-                }, 5000);
+                }, 2000);
                 break;
         }
         return this;

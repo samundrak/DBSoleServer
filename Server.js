@@ -45,9 +45,10 @@ module.exports = class Server {
 
                 context.database.query(data.query || '', (e, r) => {
                     let response = {
-                        success: 0,
+                        success: e ? 0 : 1,
                         result: e || r
                     };
+
                     socket.emit('query_response', response);
                 });
             });
