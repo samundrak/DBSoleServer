@@ -14,7 +14,7 @@ module.exports = class Server {
             DatabaseService.provider[config.default.database]
         );
         this.database = databaseService.database;
-        process.env.PORT = process.env.PORT || config.server.port;
+        process.env.PORT = process.env.PORT || 9393;
     }
 
     run(cb) {

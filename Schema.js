@@ -1,9 +1,6 @@
 module.exports = {
     server: {
-        port: {
-            required: true,
-            default: 9393
-        }
+        port: {}
     },
     default: {
         database: {
@@ -12,7 +9,8 @@ module.exports = {
             choices: [
                 'mysql'
             ],
-            default: 'mysql'
+            default: 'mysql',
+            message: "Select Database"
         }
     },
     database: {
@@ -23,14 +21,17 @@ module.exports = {
             },
             username: {
                 required: true,
-                default: 'root'
+                default: 'root',
+                message: "Enter database username"
             },
             password: {
                 required: true,
-                default: 'root'
+                default: 'root',
+                message: "Enter database password"
             },
             database: {
-                required: true
+                required: true,
+                message: "Enter database name"
             }
         }
     }
