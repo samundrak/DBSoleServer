@@ -1,6 +1,6 @@
 {
   "name": "dbsole",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "./bin/dbsole.js",
   "bin": {
