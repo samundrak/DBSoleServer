@@ -80,7 +80,7 @@ module.exports = class DBSole {
     goDaemon() {
         setTimeout(function () {
             //noinspection JSUnresolvedFunction
-            // require('daemon')();
+            require('daemon')();
         }, 2000);
     }
 }
