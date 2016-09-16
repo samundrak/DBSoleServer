@@ -1,5 +1,7 @@
 const ExtendImplementor = require('../../../ExtendImplementor');
-const config = require('../../../../config.json');
+const ConfigBuilder = require('../../../ConfigBuilder');
+
+const config = new ConfigBuilder().getConfig();
 
 module.exports = class Provider extends ExtendImplementor {
 

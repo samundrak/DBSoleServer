@@ -3,22 +3,25 @@ const server = require('http').Server(app);
 
 const DatabaseService = require('./src/Core/Database');
 const SocketService = require('./src/Core/Socket');
+const ConfigBuilder = require('./src/ConfigBuilder');
 
-const config = require('./config.json');
+const config = new ConfigBuilder().getConfig();
 
 
 module.exports = class Server {
 
     constructor() {
-        const databaseService = new DatabaseService.interface(
+        let databaseService = new DatabaseService.interface(
             DatabaseService.provider[config.default.database]
         );
+
+
         this.database = databaseService.database;
         process.env.PORT = process.env.PORT || 9393;
     }
 
     run(cb) {
-        const socketService = new SocketService.interface(
+        let socketService = new SocketService.interface(
             SocketService.provider.SocketIO
         );
 
